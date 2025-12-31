@@ -1,0 +1,36 @@
+#!/bin/bash
+#PBS -N tem
+#PBS -q sugon
+# Array index
+#PBS -t tem
+
+# error and output files
+#PBS -o pbs_out
+#PBS -e pbs_err
+
+#PBS -l nodes=1:ppn=1,pmem=8gb,pvmem=12gb,walltime=72:00:00
+
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+export MALLOC_ARENA_MAX=2
+
+set -euo pipefail
+
+# back to the working directory and prepare output directories
+cd "$PBS_O_WORKDIR"
+mkdir -p pbs_out pbs_err
+
+# activate conda
+set +u
+source ~/miniconda3/etc/profile.d/conda.sh || true
+conda activate igwn-py310-selfbuild || source activate igwn-py310-selfbuild
+set -u
+
+IDX=${PBS_ARRAYID}
+
+echo "Running on host: $(hostname), IDX=${IDX}" >&2
+python tem${IDX}.py \
+  > pbs_out/${PBS_JOBNAME}-${PBS_JOBID}.${IDX}.out \
+  2> pbs_err/${PBS_JOBNAME}-${PBS_JOBID}.${IDX}.err
