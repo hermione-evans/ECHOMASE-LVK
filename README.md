@@ -8,10 +8,10 @@
 <sup>5 Center for High Energy Physics, Peking University, Beijing 100871, China</sup><br />
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![arXiv](https://img.shields.io/badge/arXiv-2512.xxxxx-b31b1b.svg)](https://arxiv.org/abs/2512.xxxxx)
+[![arXiv](https://img.shields.io/badge/arXiv-2512.24730-b31b1b.svg)](https://arxiv.org/abs/2512.24730)
 
 
-This repository serves as the supplementary material for our paper: [Wu et al., arXiv:2512.xxxxx](https://arxiv.org/abs/2512.xxxxx). It contains the source code, analysis pipeline, and summary data required to reproduce the figures and results presented in the paper.
+This repository serves as the supplementary material for our paper: [Wu et al., arXiv:2512.24730](https://arxiv.org/abs/2512.24730). It contains the source code, analysis pipeline, and summary data required to reproduce the figures and results presented in the paper.
 Due to size constraints, we're not able to provide the full posterior files. We may add compressed posterior files to run the code, which gives similar results to the full posterior .
 
 
