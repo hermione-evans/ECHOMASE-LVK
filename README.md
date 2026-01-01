@@ -50,7 +50,14 @@ To use this repository, clone it to your local machine and follow the individual
 We encourage the use of these data in derivative works. If you make use of the material provided in this repository, we kindly ask you to cite our paper using the following reference:
 
 ```
-@article{
+@article{Wu:2025enn,
+    author = "Wu, Di and Zhang, Xi-Li and Huang, Qing-Guo and Ren, Jing",
+    title = "{Model-independent search of gravitational wave echoes in LVK data}",
+    eprint = "2512.24730",
+    archivePrefix = "arXiv",
+    primaryClass = "gr-qc",
+    month = "12",
+    year = "2025"
 }
 ```
 
