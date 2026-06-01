@@ -39,14 +39,13 @@ def whiten(strain, interp_psd, dt):
 def dimention2to1(i,j):
     temp = max(i-1,j-1)
     return temp**2+i+(temp-j)+1
-    ## 从i，j转换到ij，注意第一项编号是1
     ## transform ij to i,j, note that the first item is numbered 1
 
 def dimention1to2(ij_input):
     ij = ij_input-1
-    temp = int(np.sqrt(ij)) ##表示该组中最大的数字
-    #part = temp*2+1 ##表示该组共有多少个元素
-    #n = ij - temp**2 +1 ##表示处于该组第几个位置
+    temp = int(np.sqrt(ij))
+    #part = temp*2+1
+    #n = ij - temp**2 +1
     ## temp represents the largest number in the group
     ## part = temp*2+1 represents the total number of elements in the group
     ## n = ij - temp**2 +1 represents the position in the group
@@ -302,7 +301,7 @@ if(whether_print_header == 0):
 
 strainLall = TimeSeries.read('../noise/'+fnameL,format='hdf5.gwosc',start=gps-t0-duration, end=gps-t0+2*duration)
 strainHall = TimeSeries.read('../noise/'+fnameH,format='hdf5.gwosc',start=gps-t0-duration, end=gps-t0+2*duration)
-##前后各增加一段以保证whiten时数据足够
+## add one extra segment before and after to ensure sufficient data for whitening
 Lpart=np.split(strainLall,3)
 Hpart=np.split(strainHall,3)
 Lpart.reverse()

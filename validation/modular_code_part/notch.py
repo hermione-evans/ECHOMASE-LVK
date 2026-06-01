@@ -49,7 +49,7 @@ class NotchFilterProcessor:
         data_freq = np.fft.rfft(data)
         freqs = np.fft.rfftfreq(len(data), dt)
         psd_values = psd(np.abs(freqs))
-        psd_values[psd_values == 0] = np.inf  # 防止除以零
+        psd_values[psd_values == 0] = np.inf  # prevent division by zero
         #norm = 1./np.sqrt(1./(dt*2))
         norm = 1
         white_data_freq = data_freq / np.sqrt(psd_values) *norm
@@ -73,7 +73,7 @@ class NotchFilterProcessor:
         ]
         exclude_indices = np.sort(np.unique(exclude_indices))
 
-        # 识别连续的区间
+        # identify contiguous intervals
         gaps = np.diff(exclude_indices)
         discontinuity_indices = np.where(gaps > 1)[0]
         interval_starts = exclude_indices[np.insert(discontinuity_indices + 1, 0, 0)]
@@ -81,14 +81,14 @@ class NotchFilterProcessor:
 
         psd_values_corrected = psd_values.copy()
         for start, end in zip(interval_starts, interval_ends):
-            # 获取区间左右的有效索引
+            # get valid indices on both sides of the interval
             # left = start - 1
             # right = end + 1
             # while left in exclude_indices and left > 0:
             #     left -= 1
             # while right in exclude_indices and right < len(psd_values) - 1:
             #     right += 1
-            # 线性插值修正区间内的PSD值
+            # linearly interpolate to correct PSD values within the interval
             left = start
             right = end + 1
             if left >= 0 and right < len(psd_values):

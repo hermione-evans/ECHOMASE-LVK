@@ -39,13 +39,12 @@ def whiten(strain, interp_psd, dt):
 def dimention2to1(i,j):
     temp = max(i-1,j-1)
     return temp**2+i+(temp-j)+1
-    ## 从i，j转换到ij，注意第一项编号是1
     ## transform ij to i,j, note that the first item is numbered 1
 def dimention1to2(ij_input):
     ij = ij_input-1
-    temp = int(np.sqrt(ij)) ##表示该组中最大的数字
-    #part = temp*2+1 ##表示该组共有多少个元素
-    #n = ij - temp**2 +1 ##表示处于该组第几个位置
+    temp = int(np.sqrt(ij))
+    #part = temp*2+1
+    #n = ij - temp**2 +1
     ## temp represents the largest number in the group
     ## part = temp*2+1 represents the total number of elements in the group
     ## n = ij - temp**2 +1 represents the position in the group
@@ -288,7 +287,7 @@ strainLall_before = TimeSeries.read('../noise/'+fnameL,format='hdf5.gwosc',start
 strainHall_before = TimeSeries.read('../noise/'+fnameH,format='hdf5.gwosc',start=gps - t_before - (n_before+2) * duration, end=gps - t_before)
 strainLall_after = TimeSeries.read('../noise/'+fnameL,format='hdf5.gwosc',start=gps + t_after, end=gps + t_after + (n_after + 2) * duration)
 strainHall_after = TimeSeries.read('../noise/'+fnameH,format='hdf5.gwosc',start=gps + t_after, end=gps + t_after + (n_after + 2) * duration)
-##前后各增加一段以保证whiten时数据足够
+## add one extra segment before and after to ensure sufficient data for whitening
 L_part_before = np.split(strainLall_before, n_before + 2)
 H_part_before = np.split(strainHall_before, n_before + 2)
 L_part_after = np.split(strainLall_after, n_after + 2)

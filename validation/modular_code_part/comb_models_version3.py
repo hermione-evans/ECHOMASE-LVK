@@ -1,7 +1,6 @@
 import numpy as np
 
 def trianglecomb(height,phase,width,spacing,x):
-    # 高度、相位、峰宽度、单个周期长度、频率（输入的x）
     '''
     the first parameter is the height of wave.
     the second parameter is phase, should between 0 to spacing. 
@@ -36,7 +35,6 @@ def trianglecombmodel(frequency, ** params):
     width = params['width'] * 1.0
     spacing = params['spacing'] * 1.0
     if isinstance(amplitude,np.ndarray) or isinstance(phase,np.ndarray) or isinstance(width,np.ndarray) or isinstance(spacing,np.ndarray):
-        # 我感觉这个if应该有更优雅的写法但是没想出来...
         mu = trianglecomb(amplitude,phase,width,spacing,frequency[None,:])
 
         return mu
@@ -47,8 +45,7 @@ def trianglecombmodel(frequency, ** params):
         return mu
     
 def qnmcomb_cut(height,phase,width,spacing,duration,x):
-    ##高度、相位、峰宽度、单个周期长度、频率（输入的x）
-    # cut 表示在归一化的峰高小于cut时截断，目前暂时取的是0.2
+    # cut: truncate when the normalized peak height is below this threshold (currently 0.2)
     '''
     the first parameter is the height of wave.
     the second parameter is phase, should between 0 to spacing.
